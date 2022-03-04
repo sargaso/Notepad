@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Lesson21</string>
+
+    <string name="fragment_notes_fab_add_note_content_description">
+        Кнопка добавить заметку</string>
+
+    <string name="recycler_view_note_iv_delete_note_content_description">
+        Кнопка удалить заметку</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_note_add_save_note_btn_text">Save</string>
+</resources>
