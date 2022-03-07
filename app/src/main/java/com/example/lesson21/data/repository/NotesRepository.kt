@@ -5,28 +5,41 @@ import com.example.lesson21.data.datasource.database.room.database.NotesDatabase
 import com.example.lesson21.data.datasource.database.room.models.NoteDB
 import com.example.lesson21.data.datasource.database.room.models.toNoteVO
 import com.example.lesson21.presentation.notes.adapters.models.NoteVO
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class NotesRepository(private val context: Context) {
 
     fun insertNote(note: NoteDB) {
-        getNotesDatabase(context = context)
-            .getNotesDao().insertNote(note = note)
+       CoroutineScope(Dispatchers.IO).launch {
+           getNotesDatabase(context = context)
+               .getNotesDao().insertNote(note = note)
+       }
     }
 
-    fun getAllNotes(): List<NoteVO> {
-        return getNotesDatabase(context = context).getNotesDao()
-            .getAllNotes().map { noteDB ->
-                noteDB.toNoteVO()
-            }
+    suspend  fun getAllNotes(): List<NoteVO> {
+        val notes= CoroutineScope(Dispatchers.IO).async {
+            getNotesDatabase(context = context).getNotesDao()
+                .getAllNotes().map { noteDB ->
+                    noteDB.toNoteVO()
+                }
+        }
+        return notes.await()
     }
 
     fun deleteNote(note: NoteDB) {
-        getNotesDatabase(context = context)
-            .getNotesDao().deleteNote(note = note)
+        CoroutineScope(Dispatchers.IO).launch {
+            getNotesDatabase(context = context)
+                .getNotesDao().deleteNote(note = note)
+        }
     }
 
     fun updateNote(note: NoteDB) {
-        getNotesDatabase(context = context)
-            .getNotesDao().updateNote(note = note)
+        CoroutineScope(Dispatchers.IO).launch {
+            getNotesDatabase(context = context)
+                .getNotesDao().updateNote(note = note)
+        }
     }
 }

@@ -1,12 +1,11 @@
 package com.example.lesson21.data.datasource.database.room.dao
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.lesson21.data.datasource.database.room.models.NoteDB
 
+@Dao
 interface NotesDao {
+
 
     @Insert
     fun insertNote(note: NoteDB)

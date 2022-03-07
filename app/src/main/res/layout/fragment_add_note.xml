@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.add_note.view.AddNoteFragment">
+
+    <EditText
+        android:id="@+id/etNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:inputType="text"
+        android:paddingHorizontal="@dimen/medium_padding"
+        android:hint="@string/fragment_add_note_et_note_title_hint"/>
+
+    <EditText
+        android:id="@+id/etNoteDescription"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:hint="@string/fragment_add_note_et_note_description_hint"
+        android:paddingHorizontal="@dimen/medium_padding"
+        android:gravity="top"
+        android:paddingTop="@dimen/small_padding"
+        android:layout_weight="0.8" />
+
+    <Button
+        android:id="@+id/btnSaveNote"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_gravity="end"
+        android:text="@string/fragment_add_note_save_note_btn_text"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginBottom="@dimen/big_margin"/>
+
+</LinearLayout>

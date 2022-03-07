@@ -7,14 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.lesson21.data.datasource.database.room.models.NoteDB
 import com.example.lesson21.data.repository.NotesRepository
-import com.example.lesson21.databinding.FragmentNoteAddBinding
-import com.example.lesson21.presentation.notes.view.NotesFragment.Companion.noteExists
+import com.example.lesson21.databinding.FragmentAddNoteBinding
+import com.example.lesson21.presentation.notes.view.NotesFragment
+import com.example.lesson21.utils.extensions.navigateToFragment
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddNoteFragment : Fragment() {
+    companion object {
+        private const val DATE_FORMAT = "dd.M.yyyy hh:mm:ss"
+        private const val SNACK_BAR_FIELDS_ARE_BLANK_TEXT =
+            "Please make sure that fields are filed up"
+    }
 
-    private var binding: FragmentNoteAddBinding? = null
+    private var binding: FragmentAddNoteBinding? = null
     private var notesRepository: NotesRepository? = null
 
     override fun onCreateView(
@@ -22,7 +29,7 @@ class AddNoteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentNoteAddBinding
+        binding = FragmentAddNoteBinding
             .inflate(inflater, container, false)
 
         return binding?.root
@@ -34,21 +41,38 @@ class AddNoteFragment : Fragment() {
     }
 
     private fun initNotesRepository() {
-        notesRepository = NotesRepository(context = requireContext()
-            .applicationContext)
+        notesRepository = NotesRepository(
+            context = requireContext()
+                .applicationContext
+        )
     }
 
     private fun setListeners() {
         binding?.btnSaveNote?.setOnClickListener {
-            val sdf = SimpleDateFormat("dd.M.yyyy hh:mm:ss", Locale.getDefault())
+            if ((binding?.etNoteTitle?.text?.isNotBlank() == true) &&
+                (binding?.etNoteDescription?.text?.isNotBlank() == true)
+            ) {
+                val simpleDateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
 
-            val noteDB = NoteDB(noteTitle =
-            binding?.etNoteTitle?.text.toString(),
-                noteDescription = binding?.etNoteDescription?.text.toString(),
-            noteCreatedTime = sdf.format(Date()))
+                val noteDB = NoteDB(
+                    noteTitle =
+                    binding?.etNoteTitle?.text.toString(),
+                    noteDescription = binding?.etNoteDescription?.text.toString(),
+                    noteCreatedTime = simpleDateFormat.format(Date())
+                )
 
-            notesRepository?.insertNote(note = noteDB)
-            noteExists = true
+                notesRepository?.insertNote(note = noteDB)
+
+                with(requireActivity().supportFragmentManager) {
+                    navigateToFragment(fragment = NotesFragment())
+                }
+            } else {
+                binding?.root?.let { view ->
+                    Snackbar.make(
+                        view, SNACK_BAR_FIELDS_ARE_BLANK_TEXT,
+                        Snackbar.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
