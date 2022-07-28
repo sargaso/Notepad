@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lesson21</string>
+    <string name="app_name">Notepad</string>
 
     <string name="fragment_notes_fab_add_note_content_description">
         Button add note</string>

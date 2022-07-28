@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kotlin/Room/app/src/main/res/layout/fragment_add_note.xml" value="0.1" />
         <entry key="..\:/Kotlin/Room/app/src/main/res/layout/fragment_change_notes.xml" value="0.20520833333333333" />
         <entry key="..\:/Kotlin/Room/app/src/main/res/layout/fragment_note_add.xml" value="0.20520833333333333" />
         <entry key="..\:/Kotlin/Room/app/src/main/res/layout/fragment_notes.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Zorikto/Desktop/kotlin/Kotlin/Room/app/src/main/res/layout/fragment_change_notes.xml" value="0.2653985507246377" />
+        <entry key="..\:/Users/Zorikto/Desktop/kotlin/Kotlin/Room/app/src/main/res/layout/fragment_notes.xml" value="0.1" />
         <entry key="..\:/Users/inordic/AndroidStudioProjects/Lesson21/app/src/main/res/drawable/ic_delete_note.xml" value="0.11666666666666667" />
         <entry key="..\:/Users/inordic/AndroidStudioProjects/Lesson21/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/inordic/AndroidStudioProjects/Lesson21/app/src/main/res/layout/fragment_note_detail.xml" value="0.1" />
