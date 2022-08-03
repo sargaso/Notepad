@@ -16,7 +16,7 @@ abstract class NotesDatabase : RoomDatabase() {
 
         private const val DATABASE_NAME = "notes_database"
 
-        @Volatile
+        @Volatile// изменение в одном потоке сразу видно в других
         private var INSTANCE: NotesDatabase? = null
 
         fun getNotesDatabase(context: Context): NotesDatabase {
@@ -24,7 +24,8 @@ abstract class NotesDatabase : RoomDatabase() {
                 return INSTANCE as NotesDatabase
             }
 
-            synchronized(this) {
+            synchronized(this) { // данный блок синхронизации блокирует многопоточность,тоесть
+         // работает в одном потоке потом в другом по очереди чтобы не было одномременной обработки
                 INSTANCE = Room.databaseBuilder(context.applicationContext,
                     NotesDatabase::class.java, DATABASE_NAME).build()
 

@@ -82,9 +82,9 @@ class NotesFragment : Fragment(R.layout.fragment_notes), NoteClick {
 
     override fun getNote(note: NoteVO) {
         val bundle = Bundle()
-        bundle.putSerializable(GET_NOTE_EXTRA_KEY , note)
-
         val fragment = ChangeNotesFragment()
+
+        bundle.putSerializable(GET_NOTE_EXTRA_KEY , note)
         fragment.arguments = bundle
 
         requireActivity().supportFragmentManager.navigateToFragment(
