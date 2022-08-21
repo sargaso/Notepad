@@ -6,7 +6,6 @@
 * Редактирование
 
 ## Стэк технологий
-* Singltone
 * Coroutines
 * View Binding
 * kotlinx.serialization - Сериализация данных
